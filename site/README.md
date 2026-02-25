@@ -22,7 +22,7 @@ npm start
 
 ## Configure GitHub repo URL
 
-By default the site links to `https://github.com/pguso/ai-agents-from-scratch`. To point to your fork or repo, set:
+By default the site links to [github.com/ali-0407/ai-agents-build](https://github.com/ali-0407/ai-agents-build). To point to a different repo (e.g. your fork), set:
 
 ```bash
 # .env.local

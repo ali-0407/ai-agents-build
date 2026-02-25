@@ -2,7 +2,7 @@
  * Learning path steps for Phase 1 and Phase 2.
  * Matches the repo structure and README.
  */
-const defaultRepoUrl = 'https://github.com/pguso/ai-agents-from-scratch';
+const defaultRepoUrl = 'https://github.com/ali-0407/ai-agents-build';
 export const repoUrl =
   (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_REPO_URL) ||
   defaultRepoUrl;
