@@ -1,218 +1,178 @@
-> **Read the full interactive version:**  
-> This repository is part of **AI Agents From Scratch** - a hands-on learning series where we build AI agents *step by step*, explain every design decision, and visualize what’s happening under the hood.  
->  
-> 👉 **https://agentsfromscratch.com**  
->  
-> If you prefer **long-form explanations, diagrams, and conceptual deep dives**, start there - then come back here to explore the code.
-
-
 # AI Agents From Scratch
 
-Learn to build AI agents locally without frameworks. Understand what happens under the hood before using production frameworks.
+Learn to build AI agents locally without frameworks. Understand what happens under the hood before adopting production frameworks.
 
-## Purpose
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-This repository teaches you to build AI agents from first principles using **local LLMs** and **node-llama-cpp**. By working through these examples, you'll understand:
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [Phase 1: Agent Fundamentals](#phase-1-agent-fundamentals-from-llms-to-react)
+- [Phase 2: Framework Tutorial](#phase-2-building-a-production-framework-tutorial)
+- [Project Structure](#project-structure---fundamentals)
+- [Concepts](#core-concepts)
+- [Resources & Contributing](#additional-resources)
+
+---
+
+## Overview
+
+This repository teaches you to build AI agents from first principles using **local LLMs** and **node-llama-cpp**. By working through the examples, you will understand:
 
 - How LLMs work at a fundamental level
 - What agents really are (LLM + tools + patterns)
-- How different agent architectures function
-- Why frameworks make certain design choices
+- How different agent architectures behave
+- Why frameworks make the design choices they do
 
-**Philosophy**: Learn by building. Understand deeply, then use frameworks wisely.
+**Philosophy:** Learn by building. Understand deeply, then use frameworks wisely.
 
-## Related Projects
+### Related Projects
 
-### [AI Product from Scratch](https://github.com/pguso/ai-product-from-scratch)
+| Project | Description |
+|--------|-------------|
+| [AI Product from Scratch](https://github.com/pguso/ai-product-from-scratch) | TypeScript/React. Prompt engineering, structured output, API design, and frontend integration. |
+| [AI Agents from Scratch (Python)](https://github.com/pguso/agents-from-scratch) | Same concepts in Python. |
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+### Next Phase
 
-Learn AI product development fundamentals with local LLMs. Covers prompt engineering, structured output, multi-step reasoning, API design, and frontend integration through 10 comprehensive lessons with visual diagrams.
+After mastering the fundamentals, **Phase 2** walks you through re-implementing core parts of **LangChain** and **LangGraph** in plain JavaScript using local models. The goal is not to build a new framework but to understand *how* frameworks work.
 
-### [AI Agents from Scratch in Python](https://github.com/pguso/agents-from-scratch) 
+---
 
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-
-## Next Phase: Build LangChain & LangGraph Concepts From Scratch
-
-> After mastering the fundamentals, the next stage of this project walks you through **re-implementing the core parts of LangChain and LangGraph** in plain JavaScript using local models.
-> This is **not** about building a new framework, it’s about understanding *how frameworks work*.  
-
-## Phase 1: Agent Fundamentals - From LLMs to ReAct
+## Quick Start
 
 ### Prerequisites
-- Node.js 18+
-- At least 8GB RAM (16GB recommended)
-- Download models and place in `./models/` folder, details in [DOWNLOAD.md](DOWNLOAD.md)
 
-### Installation
+- **Node.js** 18 or later
+- **RAM:** 8 GB minimum (16 GB recommended for larger models)
+- **Models:** Place GGUF models in `./models/`. See [DOWNLOAD.md](DOWNLOAD.md) for details.
+
+### Install
+
 ```bash
 npm install
 ```
 
-### Run Examples
+### Run Examples (Phase 1)
+
+From the repository root:
+
 ```bash
-node intro/intro.js
-node simple-agent/simple-agent.js
-node react-agent/react-agent.js
+node examples/01_intro/intro.js
+node examples/07_simple-agent/simple-agent.js
+node examples/09_react-agent/react-agent.js
 ```
 
-## Learning Path
+### Web UI (Chat)
 
-Follow these examples in order to build understanding progressively:
+A minimal chat interface with optional OpenAI-backed responses:
 
-### 1. **Introduction** - Basic LLM Interaction
-`intro/` | [Code](examples/01_intro/intro.js) | [Code Explanation](examples/01_intro/CODE.md) | [Concepts](examples/01_intro/CONCEPT.md)
+```bash
+npm run web
+```
 
-**What you'll learn:**
-- Loading and running a local LLM
-- Basic prompt/response cycle
-
-**Key concepts**: Model loading, context, inference pipeline, token generation
+Open **http://localhost:3000**. Without `OPENAI_API_KEY` in `.env`, the server runs in demo mode. Set `OPENAI_API_KEY` for real AI responses. See [web/README.md](web/README.md) for details.
 
 ---
 
-### 2. (Optional) **OpenAI Intro** - Using Proprietary Models
-`openai-intro/` | [Code](examples/02_openai-intro/openai-intro.js) | [Code Explanation](examples/02_openai-intro/CODE.md) | [Concepts](examples/02_openai-intro/CONCEPT.md)
+## Phase 1: Agent Fundamentals (From LLMs to ReAct)
 
-**What you'll learn:**
-- How to call hosted LLMs (like GPT-4)
-- Temperature Control
-- Token Usage
+Follow the examples in order to build understanding progressively.
 
-**Key concepts**: Inference endpoints, network latency, cost vs control, data privacy, vendor dependence
+### Learning Path
 
----
+| # | Topic | Folder | Focus |
+|---|--------|--------|--------|
+| 1 | Introduction | `examples/01_intro/` | Basic LLM loading and prompt/response |
+| 2 | OpenAI Intro *(optional)* | `examples/02_openai-intro/` | Hosted models, temperature, tokens |
+| 3 | Translation | `examples/03_translation/` | System prompts, specialization |
+| 4 | Think | `examples/04_think/` | Reasoning and when to use tools |
+| 5 | Batch | `examples/05_batch/` | Parallel processing |
+| 6 | Coding | `examples/06_coding/` | Streaming and response control |
+| 7 | Simple Agent | `examples/07_simple-agent/` | Function calling and tools |
+| 8 | Simple Agent + Memory | `examples/08_simple-agent-with-memory/` | Persistent state |
+| 9 | ReAct Agent | `examples/09_react-agent/` | Reason → Act → Observe |
+| 10 | AoT Agent | `examples/10_aot-agent/` | Atom-of-Thought planning |
 
-### 3. **Translation** - System Prompts & Specialization
-`translation/` | [Code](examples/03_translation/translation.js) | [Code Explanation](examples/03_translation/CODE.md) | [Concepts](examples/03_translation/CONCEPT.md)
+Each example directory contains:
 
-**What you'll learn:**
-- Using system prompts to specialize agents
-- Output format control
-- Role-based behavior
-- Chat wrappers for different models
+- **`<name>.js`** — Runnable code
+- **`CODE.md`** — Step-by-step code explanation
+- **`CONCEPT.md`** — Concepts, patterns, and how it fits into agents
 
-**Key concepts**: System prompts, agent specialization, behavioral constraints, prompt engineering
+### Example Summaries
 
----
+#### 1. Introduction — Basic LLM Interaction
 
-### 4. **Think** - Reasoning & Problem Solving
-`think/` | [Code](examples/04_think/think.js) | [Code Explanation](examples/04_think/CODE.md) | [Concepts](examples/04_think/CONCEPT.md)
+- **Code:** [intro.js](examples/01_intro/intro.js) · [CODE.md](examples/01_intro/CODE.md) · [CONCEPT.md](examples/01_intro/CONCEPT.md)
+- **Learn:** Loading a local LLM, basic prompt/response cycle
+- **Concepts:** Model loading, context, inference pipeline, token generation
 
-**What you'll learn:**
-- Configuring LLMs for logical reasoning
-- Complex quantitative problems
-- Limitations of pure LLM reasoning
-- When to use external tools
+#### 2. (Optional) OpenAI Intro — Hosted Models
 
-**Key concepts**: Reasoning agents, problem decomposition, cognitive tasks, reasoning limitations
+- **Code:** [openai-intro.js](examples/02_openai-intro/openai-intro.js) · [CODE.md](examples/02_openai-intro/CODE.md) · [CONCEPT.md](examples/02_openai-intro/CONCEPT.md)
+- **Learn:** Calling hosted LLMs (e.g. GPT-4), temperature, token usage
+- **Concepts:** Inference endpoints, latency, cost vs control, data privacy
 
----
+#### 3. Translation — System Prompts & Specialization
 
-### 5. **Batch** - Parallel Processing
-`batch/` | [Code](examples/05_batch/batch.js) | [Code Explanation](examples/05_batch/CODE.md) | [Concepts](examples/05_batch/CONCEPT.md)
+- **Code:** [translation.js](examples/03_translation/translation.js) · [CODE.md](examples/03_translation/CODE.md) · [CONCEPT.md](examples/03_translation/CONCEPT.md)
+- **Learn:** System prompts, output format, role-based behavior, chat wrappers
+- **Concepts:** System prompts, agent specialization, prompt engineering
 
-**What you'll learn:**
-- Processing multiple requests concurrently
-- Context sequences for parallelism
-- GPU batch processing
-- Performance optimization
+#### 4. Think — Reasoning & Problem Solving
 
-**Key concepts**: Parallel execution, sequences, batch size, throughput optimization
+- **Code:** [think.js](examples/04_think/think.js) · [CODE.md](examples/04_think/CODE.md) · [CONCEPT.md](examples/04_think/CONCEPT.md)
+- **Learn:** Configuring reasoning, complex problems, limitations, when to use tools
+- **Concepts:** Reasoning agents, problem decomposition, reasoning limitations
 
----
+#### 5. Batch — Parallel Processing
 
-### 6. **Coding** - Streaming & Response Control
-`coding/` | [Code](examples/06_coding/coding.js) | [Code Explanation](examples/06_coding/CODE.md) | [Concepts](examples/06_coding/CONCEPT.md)
+- **Code:** [batch.js](examples/05_batch/batch.js) · [CODE.md](examples/05_batch/CODE.md) · [CONCEPT.md](examples/05_batch/CONCEPT.md)
+- **Learn:** Concurrent requests, context sequences, GPU batching, performance
+- **Concepts:** Parallel execution, batch size, throughput
 
-**What you'll learn:**
-- Real-time streaming responses
-- Token limits and budget management
-- Progressive output display
-- User experience optimization
+#### 6. Coding — Streaming & Response Control
 
-**Key concepts**: Streaming, token-by-token generation, response control, real-time feedback
+- **Code:** [coding.js](examples/06_coding/coding.js) · [CODE.md](examples/06_coding/CODE.md) · [CONCEPT.md](examples/06_coding/CONCEPT.md)
+- **Learn:** Streaming responses, token limits, progressive output
+- **Concepts:** Streaming, token-by-token generation, real-time feedback
 
----
+#### 7. Simple Agent — Function Calling (Tools)
 
-### 7. **Simple Agent** - Function Calling (Tools)
-`simple-agent/` | [Code](examples/07_simple-agent/simple-agent.js) | [Code Explanation](examples/07_simple-agent/CODE.md) | [Concepts](examples/07_simple-agent/CONCEPT.md)
+- **Code:** [simple-agent.js](examples/07_simple-agent/simple-agent.js) · [CODE.md](examples/07_simple-agent/CODE.md) · [CONCEPT.md](examples/07_simple-agent/CONCEPT.md)
+- **Learn:** Function calling, defining tools, JSON Schema, when the LLM uses tools
+- **Concepts:** Function calling, tool definitions, agency
+- **Milestone:** Text generation becomes agency.
 
-**What you'll learn:**
-- Function calling / tool use fundamentals
-- Defining tools the LLM can use
-- JSON Schema for parameters
-- How LLMs decide when to use tools
+#### 8. Simple Agent with Memory — Persistent State
 
-**Key concepts**: Function calling, tool definitions, agent decision making, action-taking
+- **Code:** [simple-agent-with-memory.js](examples/08_simple-agent-with-memory/simple-agent-with-memory.js) · [CODE.md](examples/08_simple-agent-with-memory/CODE.md) · [CONCEPT.md](examples/08_simple-agent-with-memory/CONCEPT.md)
+- **Learn:** Persisting across sessions, memory management, retrieval
+- **Concepts:** Persistent memory, state management, context augmentation
 
-**This is where text generation becomes agency!**
+#### 9. ReAct Agent — Reasoning + Acting
 
----
+- **Code:** [react-agent.js](examples/09_react-agent/react-agent.js) · [CODE.md](examples/09_react-agent/CODE.md) · [CONCEPT.md](examples/09_react-agent/CONCEPT.md)
+- **Learn:** ReAct (Reason → Act → Observe), iterative tool use, self-correction
+- **Concepts:** ReAct pattern, observation–action cycles, multi-step agents
+- **Milestone:** Foundation of modern agent frameworks.
 
-### 8. **Simple Agent with Memory** - Persistent State
-`simple-agent-with-memory/` | [Code](examples/08_simple-agent-with-memory/simple-agent-with-memory.js) | [Code Explanation](examples/08_simple-agent-with-memory/CODE.md) | [Concepts](examples/08_simple-agent-with-memory/CONCEPT.md)
+#### 10. AoT Agent — Atom of Thought Planning
 
-**What you'll learn:**
-- Persisting information across sessions
-- Long-term memory management
-- Facts and preferences storage
-- Memory retrieval strategies
-
-**Key concepts**: Persistent memory, state management, memory systems, context augmentation
-
----
-
-### 9. **ReAct Agent** - Reasoning + Acting
-`react-agent/` | [Code](examples/09_react-agent/react-agent.js) | [Code Explanation](examples/09_react-agent/CODE.md) | [Concepts](examples/09_react-agent/CONCEPT.md)
-
-**What you'll learn:**
-- ReAct pattern (Reason → Act → Observe)
-- Iterative problem solving
-- Step-by-step tool use
-- Self-correction loops
-
-**Key concepts**: ReAct pattern, iterative reasoning, observation-action cycles, multi-step agents
-
-**This is the foundation of modern agent frameworks!**
+- **Code:** [aot-agent.js](examples/10_aot-agent/aot-agent.js) · [CODE.md](examples/10_aot-agent/CODE.md) · [CONCEPT.md](examples/10_aot-agent/CONCEPT.md)
+- **Learn:** Atom-of-Thought methodology, atomic planning, dependency management, structured JSON plans
+- **Concepts:** AoT planning, atomic operations, dependency resolution, plan validation
 
 ---
-
-### 10. **AoT Agent** - Atom of Thought Planning
-`aot-agent/` | [Code](examples/10_aot-agent/aot-agent.js) | [Code Explanation](examples/10_aot-agent/CODE.md) | [Concepts](examples/10_aot-agent/CONCEPT.md)
-
-**What you'll learn:**
-- Atom of Thought methodology
-- Atomic planning for multi-step computations
-- Dependency management between operations
-- Structured JSON output for reasoning plans
-- Deterministic execution of plans
-
-**Key concepts**: AoT planning, atomic operations, dependency resolution, plan validation, structured reasoning
-
----
-
-## Documentation Structure
-
-Each example folder contains:
-
-- **`<name>.js`** - The working code example
-- **`CODE.md`** - Step-by-step code explanation
-- Line-by-line breakdowns
-- What each part does
-- How it works
-- **`CONCEPT.md`** - High-level concepts
-- Why it matters for agents
-- Architectural patterns
-- Real-world applications
-- Simple diagrams
 
 ## Core Concepts
 
-### What is an AI Agent?
+### What Is an AI Agent?
 
 ```
 AI Agent = LLM + System Prompt + Tools + Memory + Reasoning Pattern
@@ -223,37 +183,41 @@ AI Agent = LLM + System Prompt + Tools + Memory + Reasoning Pattern
 
 ### Evolution of Capabilities
 
-```
-1. intro          → Basic LLM usage
-2. translation    → Specialized behavior (system prompts)
-3. think          → Reasoning ability
-4. batch          → Parallel processing
-5. coding         → Streaming & control
-6. simple-agent   → Tool use (function calling)
-7. memory-agent   → Persistent state
-8. react-agent    → Strategic reasoning + tool use
-```
+| Step | Example | Capability |
+|------|---------|------------|
+| 1 | intro | Basic LLM usage |
+| 2 | translation | Specialized behavior (system prompts) |
+| 3 | think | Reasoning |
+| 4 | batch | Parallel processing |
+| 5 | coding | Streaming & control |
+| 6 | simple-agent | Tool use (function calling) |
+| 7 | memory-agent | Persistent state |
+| 8 | react-agent | Strategic reasoning + tools |
 
 ### Architecture Patterns
 
-**Simple Agent (Steps 1-5)**
+**Simple agent (steps 1–5):**
+
 ```
 User → LLM → Response
 ```
 
-**Tool-Using Agent (Step 6)**
+**Tool-using agent (step 6):**
+
 ```
 User → LLM ⟷ Tools → Response
 ```
 
-**Memory Agent (Step 7)**
+**Memory agent (step 7):**
+
 ```
 User → LLM ⟷ Tools → Response
        ↕
      Memory
 ```
 
-**ReAct Agent (Step 8)**
+**ReAct agent (step 8):**
+
 ```
 User → LLM → Think → Act → Observe
        ↑      ↓      ↓      ↓
@@ -261,244 +225,203 @@ User → LLM → Think → Act → Observe
            Iterate until solved
 ```
 
-## ️ Helper Utilities
+---
+
+## Helper Utilities
 
 ### PromptDebugger
-`helper/prompt-debugger.js`
 
-Utility for debugging prompts sent to the LLM. Shows exactly what the model sees, including:
+**Location:** `helper/prompt-debugger.js`
+
+Inspect exactly what the model receives:
+
 - System prompts
 - Function definitions
 - Conversation history
 - Context state
 
-Usage example in `simple-agent/simple-agent.js`
+See usage in `examples/07_simple-agent/simple-agent.js`.
 
-## ️ Project Structure - Fundamentals
+---
+
+## Project Structure — Fundamentals
 
 ```
-ai-agents/
-├── README.md                          ← You are here
-├─ examples/
-├── 01_intro/
-│   ├── intro.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 02_openai-intro/
-│   ├── openai-intro.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 03_translation/
-│   ├── translation.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 04_think/
-│   ├── think.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 05_batch/
-│   ├── batch.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 06_coding/
-│   ├── coding.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 07_simple-agent/
-│   ├── simple-agent.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 08_simple-agent-with-memory/
-│   ├── simple-agent-with-memory.js
-│   ├── memory-manager.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── 09_react-agent/
-│   ├── react-agent.js
-│   ├── CODE.md
-│   └── CONCEPT.md
-├── helper/
-│   └── prompt-debugger.js
-├── models/                             ← Place your GGUF models here
-└── logs/                               ← Debug outputs
+ai-agents-from-scratch/
+├── README.md
+├── package.json
+├── examples/
+│   ├── 01_intro/
+│   │   ├── intro.js
+│   │   ├── CODE.md
+│   │   └── CONCEPT.md
+│   ├── 02_openai-intro/
+│   ├── 03_translation/
+│   ├── 04_think/
+│   ├── 05_batch/
+│   ├── 06_coding/
+│   ├── 07_simple-agent/
+│   ├── 08_simple-agent-with-memory/
+│   ├── 09_react-agent/
+│   ├── 10_aot-agent/
+│   └── helper/
+│       └── prompt-debugger.js
+├── web/                    # Chat UI (npm run web)
+│   ├── server.js
+│   ├── public/
+│   └── README.md
+├── models/                 # Place GGUF models here
+├── logs/                   # Debug outputs
+└── src/                    # Phase 2 framework code
+    ├── core/
+    ├── llm/
+    ├── prompts/
+    ├── chains/
+    ├── tools/
+    ├── agents/
+    ├── memory/
+    └── graph/
 ```
+
+---
 
 ## Phase 2: Building a Production Framework (Tutorial)
 
-After mastering the fundamentals above, **Phase 2** takes you from scratch examples to production-grade framework design. You'll rebuild core concepts from **LangChain** and **LangGraph** to understand how real frameworks work internally.
+After Phase 1, **Phase 2** takes you from scratch examples to production-style design by rebuilding core ideas from **LangChain** and **LangGraph** in plain JavaScript.
 
-### What You'll Build
+### What You Build
 
-A lightweight but complete agent framework with:
-- **Runnable Interface**, The composability pattern that powers everything
-- **Message System**, Typed conversation structures (Human, AI, System, Tool)
-- **Chains**, Composing multiple operations into pipelines
-- **Memory**, Persistent state across conversations
-- **Tools**, Function calling and external integrations
-- **Agents**, Decision-making loops (ReAct, Tool-calling)
-- **Graphs**, State machines for complex workflows (LangGraph concepts)
+A small but complete agent framework with:
 
-### Learning Approach
+- **Runnable interface** — Composability pattern used everywhere
+- **Message system** — Typed conversation structures (Human, AI, System, Tool)
+- **Chains** — Composing prompts, LLMs, and parsers into pipelines
+- **Memory** — Persistent state across conversations
+- **Tools** — Function calling and external integrations
+- **Agents** — Decision loops (ReAct, tool-calling)
+- **Graphs** — State machines for complex workflows (LangGraph-style)
 
-**Tutorial-first**: Step-by-step lessons with exercises  
-**Implementation-driven**: Build each component yourself  
-**Framework-compatible**: Learn patterns used in LangChain.js
+### Approach
 
-### Structure Overview
+- **Tutorial-first** — Step-by-step lessons and exercises
+- **Implementation-driven** — Build each piece yourself
+- **Framework-compatible** — Same patterns as LangChain.js
+
+### Tutorial Layout
 
 ```
 tutorial/
-├── 01-foundation/              # 1. Core Abstractions
+├── 01-foundation/           # Core abstractions
 │   ├── 01-runnable/
-│   │   ├── lesson.md           # Why Runnable matters
-│   │   ├── exercises/          # Hands-on practice
-│   │   └── solutions/          # Reference implementations
-│   ├── 02-messages/            # Structuring conversations
-│   ├── 03-llm-wrapper/         # Wrapping node-llama-cpp
-│   └── 04-context/             # Configuration & callbacks
-│
-├── 02-composition/             # 2. Building Chains
-│   ├── 01-prompts/             # Template system
-│   ├── 02-parsers/             # Structured outputs
-│   ├── 03-llm-chain/           # Your first chain
-│   ├── 04-piping/              # Composition patterns
-│   └── 05-memory/              # Conversation state
-│
-├── 03-agency/                  # 3. Tools & Agents
-│   ├── 01-tools/               # Function definitions
-│   ├── 02-tool-executor/       # Safe execution
-│   ├── 03-simple-agent/        # Basic agent loop
-│   ├── 04-react-agent/         # Reasoning + Acting
-│   └── 05-structured-agent/    # JSON mode
-│
-└── 04-graphs/                  # 4. State Machines
-    ├── 01-state-basics/        # Nodes & edges
-    ├── 02-channels/            # State management
-    ├── 03-conditional-edges/   # Dynamic routing
-    ├── 04-executor/            # Running workflows
-    ├── 05-checkpointing/       # Persistence
-    └── 06-agent-graph/         # Agents as graphs
-
-src/
-├── core/                       # Runnable, Messages, Context
-├── llm/                        # LlamaCppLLM wrapper
-├── prompts/                    # Template system
-├── chains/                     # LLMChain, SequentialChain
-├── tools/                      # BaseTool, built-in tools
-├── agents/                     # AgentExecutor, ReActAgent
-├── memory/                     # BufferMemory, WindowMemory
-└── graph/                      # StateGraph, CompiledGraph
+│   ├── 02-messages/
+│   ├── 03-llm-wrapper/
+│   └── 04-context/
+├── 02-composition/          # Chains
+│   ├── 01-prompts/
+│   ├── 02-parsers/
+│   ├── 03-llm-chain/
+│   ├── 04-piping/
+│   └── 05-memory/
+├── 03-agency/               # Tools & agents
+│   ├── 01-tools/
+│   ├── 02-tool-executor/
+│   ├── 03-simple-agent/
+│   ├── 04-react-agent/
+│   └── 05-structured-agent/
+└── 04-graphs/               # State machines
+    ├── 01-state-basics/
+    ├── 02-channels/
+    ├── 03-conditional-edges/
+    ├── 04-executor/
+    ├── 05-checkpointing/
+    └── 06-agent-graph/
 ```
-
-### Why This Matters
-
-**Understanding beats using**: When you know how frameworks work internally, you can:
-- Debug issues faster
-- Customize behavior confidently
-- Make architectural decisions wisely
-- Build your own extensions
-- Read framework source code fluently
-
-**Learn once, use everywhere**: The patterns you'll learn (Runnable, composition, state machines) apply to:
-- LangChain.js - You'll understand their abstractions
-- LangGraph.js - You'll grasp state management
-- Any agent framework - Same core concepts
-- Your own projects - Build custom solutions
 
 ### Getting Started with Phase 2
 
-After completing the fundamentals (intro → react-agent), start the tutorial:
-
-[Overview](tutorial/README.md)
+1. Finish Phase 1 (intro through react-agent).
+2. Read the [tutorial overview](tutorial/README.md).
+3. Run lessons and exercises:
 
 ```bash
-# Start with the foundation
 cd tutorial/01-foundation/01-runnable
-lesson.md                    # Read the lesson
-node exercises/01-*.js           # Complete exercises
-node solutions/01-*-solution.js  # Check your work
+# Read lesson.md, then:
+node exercises/01-*.js
+node solutions/01-*-solution.js  # Compare with reference
 ```
 
-Each lesson includes:
-- **Conceptual explanation**, Why it matters
-- **Code walkthrough**, How to build it
-- **Exercises**, Practice implementing
-- **Solutions**, Reference code
-- **Real-world examples**, Practical usage
+**Rough time:** ~8 weeks at 3–5 hours per week.
 
-**Time commitment**: ~8 weeks, 3-5 hours/week
+### Outcomes
 
-### What You'll Achieve
+By the end of Phase 2 you will have:
 
-By the end, you'll have:
 1. Built a working agent framework from scratch
-2. Understood how LangChain/LangGraph work internally
-3. Mastered composability patterns
-4. Created reusable components (tools, chains, agents)
-5. Implemented state machines for complex workflows
-6. Gained confidence to use or extend any framework
-
-**Then**: Use LangChain.js in production, knowing exactly what happens under the hood.
+2. Understood how LangChain/LangGraph-style abstractions work
+3. Used composability patterns in practice
+4. Implemented tools, chains, agents, and state machines
+5. Gained confidence to use or extend any framework
 
 ---
 
 ## Key Takeaways
 
-### After Phase 1 (Fundamentals), you'll understand:
+### After Phase 1
 
-1. **LLMs are stateless**: Context must be managed explicitly
-2. **System prompts shape behavior**: Same model, different roles
-3. **Function calling enables agency**: Tools transform text generators into agents
-4. **Memory is essential**: Agents need to remember across sessions
-5. **Reasoning patterns matter**: ReAct > simple prompting for complex tasks
-6. **Performance matters**: Parallel processing, streaming, token limits
-7. **Debugging is crucial**: See exactly what the model receives
+1. **LLMs are stateless** — Context must be managed explicitly.
+2. **System prompts shape behavior** — Same model, different roles.
+3. **Function calling enables agency** — Tools turn text generators into agents.
+4. **Memory is essential** — Agents need persistence across sessions.
+5. **Reasoning patterns matter** — ReAct outperforms simple prompting on complex tasks.
+6. **Performance matters** — Parallelism, streaming, and token limits.
+7. **Debugging is crucial** — Inspect what the model actually receives.
 
-### After Phase 2 (Framework Tutorial), you'll master:
+### After Phase 2
 
-1. **The Runnable pattern**: Why everything in frameworks uses one interface
-2. **Composition over configuration**: Building complex systems from simple parts
-3. **Message-driven architecture**: How frameworks structure conversations
-4. **Chain abstraction**: Connecting prompts, LLMs, and parsers seamlessly
-5. **Tool orchestration**: Safe execution with timeouts and error handling
-6. **Agent execution loops**: The mechanics of decision-making agents
-7. **State machines**: Managing complex workflows with graphs
-8. **Production patterns**: Error handling, retries, streaming, and debugging
+1. **Runnable pattern** — Why a single interface powers everything.
+2. **Composition** — Building complex systems from simple parts.
+3. **Message-driven design** — How conversations are structured.
+4. **Chains** — Connecting prompts, LLMs, and parsers.
+5. **Tool orchestration** — Safe execution, timeouts, errors.
+6. **Agent loops** — How decision-making agents run.
+7. **State machines** — Managing workflows with graphs.
+8. **Production patterns** — Retries, streaming, observability.
 
-### What frameworks give you:
+### What Frameworks Add
 
-Now that you understand the fundamentals, frameworks like LangChain, CrewAI, or AutoGPT provide:
+With the fundamentals in place, frameworks like LangChain, CrewAI, or AutoGPT provide:
+
 - Pre-built reasoning patterns and agent templates
-- Extensive tool libraries and integrations
-- Production-ready error handling and retries
+- Tool libraries and integrations
+- Error handling and retries
 - Multi-agent orchestration
-- Observability and monitoring
-- Community extensions and plugins
+- Observability and extensions
 
-**You'll use them better because you know what they're doing under the hood.**
-
-## Additional Resources
-
-- **node-llama-cpp**: [GitHub](https://github.com/withcatai/node-llama-cpp)
-- **Model Hub**: [Hugging Face](https://huggingface.co/models?library=gguf)
-- **GGUF Format**: Quantized models for local inference
-
-## Contributing
-
-This is a learning resource. Feel free to:
-- Suggest improvements to documentation
-- Add more example patterns
-- Fix bugs or unclear explanations
-- Share what you built!
-
-## License
-
-Educational resource - use and modify as needed for learning.
+You will use them more effectively because you understand what they do under the hood.
 
 ---
 
-**Built with ❤️ for people who want to truly understand AI agents**
+## Additional Resources
 
-Start with `intro/` and work your way through. Each example builds on the previous one. Read both CODE.md and CONCEPT.md for full understanding.
+- **node-llama-cpp:** [GitHub](https://github.com/withcatai/node-llama-cpp)
+- **Model hub:** [Hugging Face (GGUF)](https://huggingface.co/models?library=gguf)
+- **GGUF:** Quantized format for local inference
 
-Happy learning! 
+## Contributing
+
+This is a learning resource. Contributions are welcome:
+
+- Documentation improvements
+- New examples or patterns
+- Bug fixes and clearer explanations
+- Sharing what you built
+
+## License
+
+ISC. Use and adapt for learning and teaching.
+
+---
+
+Start with `examples/01_intro/` and work through in order. Read both `CODE.md` and `CONCEPT.md` for each example. For the chat UI, run `npm run web` and see [web/README.md](web/README.md).
+
+Happy learning.
