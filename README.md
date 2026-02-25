@@ -67,15 +67,15 @@ node examples/07_simple-agent/simple-agent.js
 node examples/09_react-agent/react-agent.js
 ```
 
-### Web UI (Chat)
+### Tutorial site (web)
 
-A minimal chat interface with optional OpenAI-backed responses:
+An interactive tutorial site (like [agentsfromscratch.com](https://agentsfromscratch.com/)) is in the `site/` directory. To run it:
 
 ```bash
-npm run web
+cd site && npm install && npm run dev
 ```
 
-Open **http://localhost:3000**. Without `OPENAI_API_KEY` in `.env`, the server runs in demo mode. Set `OPENAI_API_KEY` for real AI responses. See [web/README.md](web/README.md) for details.
+Then open [http://localhost:3000](http://localhost:3000). See [site/README.md](site/README.md) for details.
 
 ---
 
@@ -266,9 +266,9 @@ ai-agents-from-scratch/
 │   ├── 10_aot-agent/
 │   └── helper/
 │       └── prompt-debugger.js
-├── web/                    # Chat UI (npm run web)
-│   ├── server.js
-│   ├── public/
+├── site/                    # Tutorial website (Next.js)
+│   ├── app/
+│   ├── package.json
 │   └── README.md
 ├── models/                 # Place GGUF models here
 ├── logs/                   # Debug outputs

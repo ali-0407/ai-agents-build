@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --surface-950: #09090b;
+  --surface-900: #18181b;
+  --surface-800: #27272a;
+  --surface-100: #f4f4f5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface-950 text-surface-100 antialiased;
+}
